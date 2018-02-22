@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import nyc.c4q.mustafizurmatin.unit5exam.models.Results;
@@ -40,9 +41,11 @@ public class DeatilsActivity extends AppCompatActivity {
         Detailemail = findViewById(R.id.developer_email);
 
 
-        if (getIntent().getSerializableExtra("Developer") != null){
+        if (getIntent().getStringExtra("Develop") != null){
 
-           Results results = (Results) getIntent().getSerializableExtra("Developer");
+            String cardbeanJson = getIntent().getStringExtra("Develop");
+
+            Results results = new Gson().fromJson(cardbeanJson,Results.class);
             Picasso.with(this)
                     .load(results.getPicture().getLarge())
                     .into(DetailImage);

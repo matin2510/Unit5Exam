@@ -5,8 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
 import nyc.c4q.mustafizurmatin.unit5exam.DeatilsActivity;
@@ -38,12 +38,20 @@ public class DevelopersViewHolder extends RecyclerView.ViewHolder {
             @Override
             public void onClick(View v) {
 
+                Intent intent = new Intent(itemView.getContext(), DeatilsActivity.class);
+                String cardbeanJson = new Gson().toJson(results);
+                intent.putExtra("Develop", cardbeanJson);
+                // Log.d(TAG, "onClick: " + cardsBean.getArtist());
+                itemView.getContext().startActivity(intent);
+
+/*
 
                 Intent intent = new Intent(itemView.getContext(), DeatilsActivity.class);
                 intent.putExtra("Developer", results);
                 itemView.getContext().startActivity(intent);
 
                 Toast.makeText(itemView.getContext(), results.getName().getFirst(), Toast.LENGTH_SHORT).show();
+*/
 
 
             }
